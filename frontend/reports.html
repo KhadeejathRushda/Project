@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Reports | Patient Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="navbar">
+    <h1>Patient Portal</h1>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+
+<div class="container">
+
+    <h2 id="welcomeMsg" style="color: #2c3e50; margin-bottom: 5px;">Welcome</h2>
+    <p class="subtitle" style="margin-bottom: 30px; color: #7f8c8d;">
+        Access your verified medical reports and diagnostic history below.
+    </p>
+
+    <div id="reportsList">
+        <div style="text-align: center; padding: 40px; color: #94a3b8;">
+            <p>Fetching your reports...</p>
+        </div>
+    </div>
+
+    <div class="card info-box" style="margin-top: 40px; border-left: 4px solid #3498db; background: #f8fafc;">
+        <h3 style="color: #2980b9; margin-top: 0;">Clinical Notice</h3>
+        <p>
+            Each report is generated via AI-assisted diagnostic tools and <b>strictly validated</b> by your attending physician before being released.
+        </p>
+        <p>
+            If a <b>Nodule</b> is detected, the report will contain specific instructions for follow-up imaging (such as a CT Scan).
+        </p>
+        <p class="small-text" style="font-size: 0.85rem; color: #64748b; margin-top: 15px; border-top: 1px solid #e2e8f0; padding-top: 10px;">
+            Questions about your results? Please schedule a consultation with your doctor.
+        </p>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Handle Welcome Message
+        const username = localStorage.getItem("username");
+        if (username) {
+            document.getElementById("welcomeMsg").innerText = `Welcome, ${username}`;
+        }
+
+        // Initialize Dashboard logic from script.js
+        if (typeof initDashboard === "function") {
+            initDashboard();
+        }
+    });
+</script>
+
+</body>
+</html>

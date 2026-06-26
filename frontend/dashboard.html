@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="navbar">
+    <h1>Doctor Dashboard</h1>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+</div>
+
+<div class="container">
+
+    <p class="welcome-text" id="welcomeText">Welcome Dr.</p>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Total Verified Reports</h3>
+            <p id="reports" class="stat-number blue">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Unique Patients</h3>
+            <p id="patients" class="stat-number green">0</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Quick Actions</h3>
+        <button onclick="window.location.href='upload.html'">
+            Upload X-ray
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>Recent Verified Reports</h3>
+        <div id="reportsList">
+            <p>Loading reports...</p>
+        </div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // 1. Handle Welcome Text
+    const username = localStorage.getItem("username");
+    if (username) {
+        document.getElementById("welcomeText").innerText = `Welcome Dr. ${username}`;
+    }
+
+    // 2. Initialize Dashboard Data from script.js
+    if (typeof initDashboard === "function") {
+        initDashboard();
+    }
+});
+</script>
+
+</body>
+</html>

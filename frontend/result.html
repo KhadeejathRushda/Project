@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Analysis Result</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: #f4f7f6; font-family: 'Inter', sans-serif; margin: 0; padding: 0;">
+
+    <div class="container" style="text-align: center; max-width: 800px; margin: 40px auto; padding: 20px;">
+        <header style="margin-bottom: 30px;">
+            <h1 style="color: #2c3e50; margin-bottom: 5px;">Diagnostic Analysis</h1>
+            <p style="color: #7f8c8d; font-size: 1.1rem;">AI-Generated Interpretability Map (LIME)</p>
+        </header>
+
+        <div class="result-card" style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.08);">
+            
+            <h2 id="resLabel" style="color: #2c3e50; margin-bottom: 10px;">Analyzing...</h2>
+            <h4 id="confLabel" style="color: #5d6d7e; margin-bottom: 25px;">Please wait while we process the scan</h4>
+
+            <div class="image-box" style="border: 2px solid #edf2f7; padding: 15px; border-radius: 12px; background: #fafbfc;">
+                <p style="font-weight: 600; color: #4a5568; margin-top: 0;">Visual Evidence (Heatmap):</p>
+                <img id="limeResult" src="" alt="LIME Heatmap" style="width: 100%; max-width: 450px; border-radius: 8px; border: 1px solid #e2e8f0; display: none;">
+                <div id="loader" style="padding: 50px; color: #718096;">Generating heatmap...</div>
+            </div>
+
+            <div id="prescriptionNote" style="display: none; margin-top: 25px; padding: 15px; background: #fff5f5; border-left: 5px solid #f56565; text-align: left;">
+                <p style="margin: 0; color: #c53030; font-weight: bold;">⚠️ Automatic Recommendation:</p>
+                <p style="margin: 5px 0 0 0; color: #742a2a; font-size: 0.95rem;">Detection of <b>Nodule</b> detected. The report will include a prescription for a follow-up <b>CT Scan</b>.</p>
+            </div>
+
+            <div style="margin-top: 35px; padding: 25px; background: #ebf8ff; border-radius: 12px; border: 1px solid #bee3f8;">
+                <p style="margin-bottom: 15px; color: #2b6cb0; font-weight: 700; font-size: 1.1rem;">Step 2: Clinical Verification</p>
+                <p style="font-size: 0.9rem; color: #4a5568; margin-bottom: 20px; line-height: 1.5;">
+                    Please review the AI heatmap. If the highlighted regions align with clinical pathology, click below to verify and send the final report to the patient.
+                </p>
+                
+                <button onclick="verifyReport()" style="background: #38a169; color: white; border: none; padding: 14px 30px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1.1rem; transition: background 0.2s;">
+                    Verify & Send to Patient
+                </button>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button onclick="window.location.href='dashboard.html'" style="background: transparent; color: #718096; border: none; cursor: pointer; text-decoration: underline; font-size: 0.9rem;">
+                    Discard Analysis & Return to Dashboard
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const prediction = localStorage.getItem("last_prediction");
+            const confidence = localStorage.getItem("last_confidence");
+            const limeImg = localStorage.getItem("last_lime_img");
+            const MEDIA_BASE = "http://127.0.0.1:8000";
+
+            const resLabel = document.getElementById("resLabel");
+            const confLabel = document.getElementById("confLabel");
+            const limeResult = document.getElementById("limeResult");
+            const loader = document.getElementById("loader");
+            const prescriptionNote = document.getElementById("prescriptionNote");
+
+            if (prediction) {
+                // Update Labels
+                resLabel.innerText = "AI Prediction: " + prediction;
+                confLabel.innerText = "Confidence Score: " + confidence + "%";
+                
+                // Color code the result for clarity
+                if (prediction.toLowerCase().includes("normal")) {
+                    resLabel.style.color = "#27ae60"; // Green for Normal
+                } else {
+                    resLabel.style.color = "#e74c3c"; // Red for Disease
+                }
+
+                // Show CT Scan warning if Nodule is detected
+                if (prediction.toLowerCase().includes("nodule")) {
+                    prescriptionNote.style.display = "block";
+                }
+
+                // Handle Image Loading
+                if (limeImg) {
+                    const fullImgUrl = limeImg.startsWith('http') ? limeImg : MEDIA_BASE + limeImg;
+                    limeResult.src = fullImgUrl;
+                    
+                    limeResult.onload = () => {
+                        loader.style.display = "none";
+                        limeResult.style.display = "inline-block";
+                    };
+                    
+                    limeResult.onerror = () => {
+                        loader.innerText = "Interpretation map generated but failed to display.";
+                    };
+                }
+            } else {
+                resLabel.innerText = "No Analysis Data Found";
+                confLabel.innerText = "Please return to the dashboard and upload a scan.";
+                loader.style.display = "none";
+            }
+        });
+
+        // Hover effect for button
+        const btn = document.querySelector('button[onclick="verifyReport()"]');
+        btn.onmouseover = () => btn.style.background = "#2f855a";
+        btn.onmouseout = () => btn.style.background = "#38a169";
+    </script>
+</body>
+</html>

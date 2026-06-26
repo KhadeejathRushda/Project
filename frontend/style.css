@@ -1,0 +1,282 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
+    min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.navbar h1, .navbar h2 {
+    font-size: 20px;
+}
+
+.nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #6366f1;
+    font-weight: 600;
+}
+
+/* ===== HERO ===== */
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #e0f2fe, #fce7f3);
+}
+
+.hero h1 {
+    font-size: 36px;
+}
+
+.hero p {
+    color: #475569;
+    margin: 15px 0;
+}
+
+/* ===== COMMON BUTTON ===== */
+button {
+    background: #6366f1;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #4f46e5;
+}
+
+/* ===== CARDS ===== */
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+/* ===== FEATURES ===== */
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 60px 20px;
+    flex-wrap: wrap;
+}
+
+/* ===== ABOUT ===== */
+.about {
+    text-align: center;
+    padding: 60px 20px;
+    background: #f1f5f9;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #ffffff;
+}
+
+/* ===== FORMS ===== */
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+}
+
+.form-box {
+    width: 320px;
+    text-align: center;
+}
+
+.form-box input,
+.form-box select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+}
+
+.form-box a {
+    color: #6366f1;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 30px;
+}
+
+/* ===== LOGOUT ===== */
+.logout-btn {
+    background: #fca5a5;
+}
+
+.logout-btn:hover {
+    background: #f87171;
+}
+
+/* ===== DASHBOARD LAYOUT ===== */
+body:has(.welcome-text) {
+    background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+}
+
+body:has(.welcome-text) .container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+}
+
+/* Welcome */
+.welcome-text {
+    grid-column: 1 / -1;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Stats */
+.grid {
+    display: flex;
+    gap: 20px;
+}
+
+.grid .card {
+    flex: 1;
+    text-align: center;
+    background: #eef2ff;
+}
+
+/* Stats numbers */
+.stat-number {
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+.blue { color: #6366f1; }
+.green { color: #10b981; }
+
+/* Quick Actions */
+.container > .card:last-child {
+    background: #f0fdf4;
+    border-left: 5px solid #22c55e;
+}
+
+/* ===== REPORTS ===== */
+body:has(#reportsList) {
+    background: linear-gradient(135deg, #f5f3ff, #faf5ff);
+}
+
+#reportsList .card {
+    margin-bottom: 15px;
+    border-left: 5px solid #a78bfa;
+}
+
+/* ===== UPLOAD ===== */
+body:has(#patient_id) {
+    background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body:has(#patient_id) .card {
+    width: 420px;
+}
+
+/* ===== HIDDEN ===== */
+.hidden {
+    display: none;
+}/* ===== PERFECT CENTERED FORMS ===== */
+
+body:has(.form-wrapper),
+body:has(.form-box) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Form wrapper fix */
+.form-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Form box upgrade */
+.form-box {
+    background: #ffffff;
+    padding: 35px 30px;
+    border-radius: 14px;
+    width: 340px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+    text-align: center;
+}
+
+/* Inputs spacing fix */
+.form-box input,
+.form-box select {
+    margin-bottom: 14px;
+}
+
+/* Button spacing */
+.form-box button {
+    margin-top: 5px;
+}
+
+/* Navbar fix for form pages */
+body:has(.form-wrapper) .navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+/* ===== LOGIN CHECKBOX FIX ===== */
+
+.form-box label {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 14px;
+    margin-bottom: 15px;
+    gap: 8px;
+}
+
+/* Checkbox size & alignment */
+.form-box input[type="checkbox"] {
+    width: auto;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* Fix label text alignment */
+.form-box label span {
+    color: #475569;
+}

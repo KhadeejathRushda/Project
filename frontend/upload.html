@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>AI Lung Analysis</title>
+
+    <!-- ✅ YOUR CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4f6f9;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        #result {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        img {
+            width: 100%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+
+    <h2>AI Lung Analysis</h2>
+
+    <label>Select Patient</label>
+    <select id="patient_id"></select>
+
+    <label>Upload X-ray</label>
+    <input type="file" id="image" accept="image/*">
+
+    <button onclick="uploadXray()">Analyze Scan</button>
+
+    <div id="result"></div>
+
+</div>
+
+<!-- ✅ JS -->
+<script src="script.js"></script>
+
+</body>
+</html>

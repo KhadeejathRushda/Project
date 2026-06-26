@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="form-wrapper">
+
+    <div class="form-box">
+
+        <h2>Welcome Back</h2>
+
+        <p class="subtitle">
+            Login to AI Medical System
+        </p>
+
+        <input type="text" id="username" placeholder="Username">
+
+        <input type="password" id="password" placeholder="Password">
+
+        <!-- ✅ FIXED CHECKBOX -->
+        <label class="checkbox-label">
+            <input type="checkbox" onclick="togglePassword()">
+            <span>Show Password</span>
+        </label>
+
+        <button onclick="login()">
+            Login
+        </button>
+
+        <p class="footer-text">
+            Don’t have an account?
+            <a href="register.html">Register</a>
+        </p>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+function togglePassword() {
+    const pass = document.getElementById("password");
+    pass.type = pass.type === "password" ? "text" : "password";
+}
+</script>
+
+</body>
+</html>

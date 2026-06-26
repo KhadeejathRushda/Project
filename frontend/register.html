@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Register - LungAI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+    <h2>LungAI</h2>
+    <div>
+        <a href="login.html">Login</a>
+    </div>
+</header>
+
+<div class="form-wrapper">
+    <div class="form-box fade-in">
+        <h2>Create Account</h2>
+        <p class="subtitle">AI Lung Disease Detection System</p>
+
+        <input type="text" id="username" placeholder="Username">
+        <input type="text" id="name" placeholder="Full Name"> <input type="email" id="email" placeholder="Email Address"> <input type="password" id="password" placeholder="Password">
+
+        <select id="role" onchange="handleRoleChange()">
+            <option value="">Select Role</option>
+            <option value="doctor">Doctor</option>
+            <option value="patient">Patient</option>
+        </select>
+
+        <div id="certificateDiv" class="hidden" style="display: none; margin-top: 10px;">
+            <label style="display: block; margin-bottom: 5px;">Upload Certificate</label>
+            <input type="file" id="certificate">
+        </div>
+
+        <div id="doctorDiv" class="hidden" style="display: none; margin-top: 10px;">
+            <label style="display: block; margin-bottom: 5px;">Select Your Doctor</label>
+            <select id="doctor">
+                <option value="">Select Doctor</option>
+            </select>
+        </div>
+
+        <button onclick="registerUser()" style="margin-top: 20px;">Register</button>
+
+        <p class="footer-text">
+            Already have an account? <a href="login.html">Login</a>
+        </p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
